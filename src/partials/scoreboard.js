@@ -8,19 +8,20 @@ export default class Scoreboard {
         this.ping4 = new Audio("public/sounds/pong-04.wav");
     }
 
+    //when points are scored
     ballCollision () {
     if (this.ball.xPos <= this.ball.radius) {
         this.playerTwoScore ++;
         this.ball.reset();
         // this.vx = -this.vx;
-        console.log("p 2 scores");
+        //console.log("p 2 scores");
         }
 
     if (this.ball.xPos + this.ball.radius >= this.ball.boardWidth) {
         this.playerOneScore ++;
         this.ball.reset();
         // this.vx = -this.vx;
-        console.log("p 1 scores");
+        //console.log("p 1 scores");
         }
 
     // if (this.playerOneScore == 10) {

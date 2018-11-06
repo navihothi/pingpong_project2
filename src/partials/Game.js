@@ -34,14 +34,15 @@ export default class Game {
 	}
 
 	render(){
-		if (this.pause || this.gameOver) {
-			console.log('yooo');
+		if (this.pause || this.gameOver) { //reset/pause the game
+			//console.log('yooo');
 			return;
 		}
 
+		//game resets when one player scores 10 points
 		if (this.scoreboard.playerOneScore == 10 || this.scoreboard.playerTwoScore == 10) {
 			this.gameOver = true;
-			this.scoreboard.ping4.play();
+			this.scoreboard.ping4.play(); 
 		} 
 
 

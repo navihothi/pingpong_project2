@@ -16,7 +16,7 @@ export default class Ball {
         this.reset();
 
     }
-
+    // when ball hits the paddle
     paddleCollision(player1, player2) {
         if (this.vx < 0) {
           let [leftX, rightX, topY, bottomY] = player1.coordinates(player1.xPos, player1.yPos, player1.width, player1.height);
@@ -35,7 +35,7 @@ export default class Ball {
         }
       }
 
-
+      //when the ball hits the wall
     wallCollision() {
         if (this.yPos <= this.radius) {
             this.vy = -this.vy;
@@ -47,7 +47,7 @@ export default class Ball {
         
 
     }
-
+    
     reset() {
         this.xPos = this.boardWidth/2;
         this.yPos = this.boardHeight/2;
