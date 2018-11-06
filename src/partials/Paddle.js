@@ -34,7 +34,7 @@ export default class Paddle {
                     break;
                 case down: //keycode 40
                     this.yPos += this.speed
-                    this.yPost = Math.min(board.height - this.height, this.yPos)
+                    this.yPos = Math.min(board.height - this.height, this.yPos)
                     //console.log("down");
                     break;
             }
