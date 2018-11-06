@@ -23,17 +23,19 @@ export default class Scoreboard {
         console.log("p 1 scores");
         }
 
-    if (this.playerOneScore == 10) {
-        this.ping4.play();
-        this.ball.reset();
-        //alert('Player one wins');
-    }
+    // if (this.playerOneScore == 10) {
+    //     this.ping4.play();
+    //     // this.ball.reset();
+    //     //alert('Player one wins');
+    // }
 
-    if (this.playerTwoScore == 10) {
-        this.ping4.play();
-        this.ball.reset();
-        //alert('Player two wins');
-    }
+    // if (this.playerTwoScore == 10) {
+    //     this.ping4.play();
+    //     // this.ball.reset();
+    //     //alert('Player two wins');
+    //}
+
+    
     }
 
 

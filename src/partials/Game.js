@@ -22,19 +22,29 @@ export default class Game {
 		// to pause the game
 		this.pause = false;
 		this.pause = document.addEventListener("keydown", event => {
-			switch (event.keyCode) {
-				case KEYS.spaceBar:
+			if (event.keyCode === KEYS.spaceBar && !this.gameOver) {
 				  this.pause = !this.pause;
+				//   this.gameOver = true;
 				  console.log("pause");
-				  break;
 			}
 		});
+
+
+		// this.gameOver = true;
 	}
 
-	render() {
-		if (this.pause) {
+	render(){
+		if (this.pause || this.gameOver) {
+			console.log('yooo');
 			return;
 		}
+
+		if (this.scoreboard.playerOneScore == 10 || this.scoreboard.playerTwoScore == 10) {
+			this.gameOver = true;
+			this.scoreboard.ping4.play();
+		} 
+
+
 
 		// More code goes here...
 		document.getElementById('game').innerHTML = '';
