@@ -2,43 +2,46 @@ import Board from './Board.js'
 import Ball from './Ball.js'
 import Paddle from './Paddle.js'
 import Scoreboard from './scoreboard.js'
-//import SVG_NS from '../settings.js'
+import {KEYS} from '../settings.js'
+//import SVG_NS from './../settings.js'
 
 export default class Game {
 
-	constructor(element, width, height) {
+	constructor(element, width, height, pause) {
 		// Other code goes here...
 		this.element = document.getElementById(element); 
 		this.width = width;
 		this.height = height;
 		this.board = new Board(width, height); //dimensions are in index.js
-		this.ball = new Ball(8); //
-		this.leftPaddle = new Paddle(6, 56, true);//up, down
-		this.rightPaddle = new Paddle(6, 56, false);//up, down
-		//this.boardGap = new boardGap (10);
-		this.scoreboard = new Scoreboard(40, 140, 0, 0);
-
+		this.ball = new Ball(8, 1, height, width); //
+		this.leftPaddle = new Paddle(this.board, 6, 56, true, KEYS.a, KEYS.z);
+		this.rightPaddle = new Paddle(this.board, 6, 56, false, KEYS.up, KEYS.down);
+		this.boardGap = 5;
+		this.scoreboard = new Scoreboard(this.ball, 40, 140);
+		
 		// to pause the game
-		// document.addEventListener('keydown', event => {
-        //     switch (event.key) {
-        //         case space:
-        //             console.log('space');
-		// 			break;
-		// 	}
-		// });*/
+		this.pause = false;
+		this.pause = document.addEventListener("keydown", event => {
+			switch (event.keyCode) {
+				case KEYS.spaceBar:
+				  this.pause = !this.pause;
+				  console.log("pause");
+				  break;
+			}
+		});
 	}
 
 	render() {
+		if (this.pause) {
+			return;
+		}
+
 		// More code goes here...
 		document.getElementById('game').innerHTML = '';
-		// let svg = document.createElementNS(SVG_NS, 'svg');
-		// svg.setAttributeNS(null, 'width', this.width);
-		// svg.setAttributeNS(null, 'height', this.height);
-		// svg.setAttributeNS(null, 'viewBox', `0 0 ${this.width} ${this.height}`);
-		// this.element.appendChild(svg);
-		// document.getElementById('game').innerHTML = `<svg id="container" width="${this.width}" height="${this.height}" style="fill:#353535"></svg>`;
+		document.getElementById('scoreboard').innerHTML = '';
+		
 		this.board.render();
-	    this.ball.render();
+	    this.ball.render(this.leftPaddle, this.rightPaddle);
 		this.leftPaddle.render();
 		this.rightPaddle.render();
 		this.scoreboard.render();
